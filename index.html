@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maple</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Maple">
+    <!-- Add to Home Screen Icon -->
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Startup Image -->
+    <link rel="apple-touch-startup-image" href="startup.png">
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            line-height: 1.5;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #noteForm {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        #noteInput {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #notesContainer {
+            margin-top: 20px;
+        }
+
+        .note {
+            background: #e9ecef;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NoteTake</h1>
+        <form id="noteForm">
+            <textarea id="noteInput" placeholder="Type your note here..."></textarea>
+            <button type="submit">Add Note</button>
+        </form>
+        <div id="notesContainer"></div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const noteForm = document.getElementById('noteForm');
+        const noteInput = document.getElementById('noteInput');
+        const notesContainer = document.getElementById('notesContainer');
+
+        noteForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const noteText = noteInput.value.trim();
+            if (noteText) {
+                addNote(noteText);
+                noteInput.value = '';
+            }
+        });
+
+        function addNote(text) {
+            const noteElement = document.createElement('div');
+            noteElement.textContent = text;
+            noteElement.classList.add('note');
+            notesContainer.appendChild(noteElement);
+        }
+    });
+    </script>
+</body>
+</html>
